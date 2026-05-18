@@ -193,25 +193,25 @@ Supervised Machine Learning and Deep Learning classification framework.
 │    SE4_figure4_tabnet_shap_permutation.ipynb
 │    SE4_figure5_bnn_uncertainty_decomposition.ipynb
 │
-├scripts/
-│   figure1_status_variable_distributions.py
-│   figure2_model_performance_heatmap.py
-│   figure3_calibration_heatmap.py
-│   figure4_tabnet_shap_permutation.py
-│    figure5_bnn_uncertainty_decomposition.py
-│
-├inputs/
-│   README_inputs.md
-│    raw_data/
-│
-├ data/
-│    imputedmulti.txt
-│    permutation/
-│    shap/
-│    bnn/
-│
-├ images/
-└ outputs/
+scripts/
+   figure1_status_variable_distributions.py
+   figure2_model_performance_heatmap.py
+   figure3_calibration_heatmap.py
+   figure4_tabnet_shap_permutation.py
+    figure5_bnn_uncertainty_decomposition.py
+
+inputs/
+   README_inputs.md
+    raw_data/
+
+ data/
+    imputedmulti.txt
+    permutation/
+    shap/
+    bnn/
+
+ images/
+ outputs/
 
 
 ---
