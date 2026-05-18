@@ -183,16 +183,16 @@ Supervised Machine Learning and Deep Learning classification framework.
 | `README.md` | Project overview and documentation |
 | `LICENSE` | Project license (MIT) |
 | `.gitignore` | Specifies files ignored by Git |
-├ notebooks/
-│   SE1_data_source_vesla_api.ipynb
-│    SE2_data_processing.ipynb
-│    SE3_xgboost_modelling.ipynb
-│    SE4_figure1_status_variable_distributions.ipynb
-│    SE4_figure2_model_performance_heatmap.ipynb
-│    SE4_figure3_calibration_heatmap.ipynb
-│    SE4_figure4_tabnet_shap_permutation.ipynb
-│    SE4_figure5_bnn_uncertainty_decomposition.ipynb
-│
+notebooks/
+   SE1_data_source_vesla_api.ipynb
+    SE2_data_processing.ipynb
+    SE3_xgboost_modelling.ipynb
+    SE4_figure1_status_variable_distributions.ipynb
+    SE4_figure2_model_performance_heatmap.ipynb
+   SE4_figure3_calibration_heatmap.ipynb
+    SE4_figure4_tabnet_shap_permutation.ipynb
+   SE4_figure5_bnn_uncertainty_decomposition.ipynb
+
 scripts/
    figure1_status_variable_distributions.py
    figure2_model_performance_heatmap.py
