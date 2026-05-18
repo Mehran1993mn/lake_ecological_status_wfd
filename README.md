@@ -217,7 +217,11 @@ inputs/
 ---
 
 # 🔁 How to Reproduce
+-## 1. Clone the repository
 
+```bash
+git clone https://github.com/Mehran1993mn/lake_ecological_status_wfd.git
+cd lake_ecological_status_wfd
 ## 💻 Computational Requirements
 
 - Python 3.10+  
