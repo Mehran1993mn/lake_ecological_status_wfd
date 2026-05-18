@@ -228,7 +228,7 @@ cd lake_ecological_status_wfd
 - 16 GB RAM recommended  
 - Optional GPU for BNN  
 - OS: Windows / Linux / macOS  
-
+-pip install -r requirements.txt
 ---
 
 
