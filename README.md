@@ -1,34 +1,24 @@
 # 🇫🇮 National-Scale Machine Learning Assessment of Lake Ecological Status under the EU WFD
 
----
-
 **Author:** Mehran Mahdian  
 **Contact:** Mehran.mahdian@uef.fi  
 **Organization:** University of Eastern Finland  
-**Website:**  
+
+**Profiles:**  
 - [LinkedIn](https://www.linkedin.com/in/mehran-mahdian1993/)  
 - [Google Scholar](https://scholar.google.com/citations?user=GWxu7rQAAAAJ&hl=en&oi=ao)
 
 ---
 
-# 🌍 Project Overview
+## 🌍 Project Overview
 
-## 📌 Problem Statement
+### 📌 Problem Statement
 
-Lakes provide critical ecosystem services including biodiversity support, drinking water, fisheries, and recreation. However, anthropogenic pressures and climate change are accelerating:
+Lakes provide critical ecosystem services including biodiversity support, drinking water, fisheries, agriculture, recreation, and climate regulation. However, anthropogenic pressures and climate change are accelerating eutrophication, browning, oxygen depletion, harmful algal blooms, and ecological degradation.
 
-- Eutrophication  
-- Browning  
-- Oxygen depletion  
+Under the **European Union Water Framework Directive (EU WFD)**, lake ecological status is assessed using biological quality elements and classified into ecological-status classes. These assessments are scientifically important but often expensive, labor intensive, temporally sparse, and difficult to update in near real time.
 
-Under the **EU Water Framework Directive (WFD)**, ecological status is assessed using biological quality elements. These assessments are:
-
-- Expensive  
-- Labor intensive  
-- Temporally sparse  
-- Not near–real-time  
-
-There is currently **no national-scale framework** that predicts WFD ecological status using only routinely measured physicochemical variables.
+This project develops a national-scale machine-learning workflow for predicting Finnish lake ecological status using routinely monitored water-quality and morphometric variables.
 
 ---
 
@@ -36,149 +26,141 @@ There is currently **no national-scale framework** that predicts WFD ecological 
 
 WFD ecological classification is difficult to model because:
 
-- Ecological classes overlap (especially the *Moderate* class)  
-- Class imbalance exists (few Bad/Poor lakes)  
-- Relationships are nonlinear and multivariate  
-- Ecological boundaries are transitional and noisy  
+- Ecological classes overlap, especially the **Moderate** class.
+- Class imbalance exists, especially for **Bad/Poor** lakes.
+- Lake ecological responses are nonlinear and multivariate.
+- Boundaries between ecological classes are transitional and noisy.
+- Routine water-quality variables are easier to monitor than biological quality elements, but their predictive reliability must be tested.
 
 ---
 
 ## 💡 Solution Statement
 
-This study develops a **national-scale machine learning framework** that:
+This repository provides a reproducible machine-learning framework that:
 
-- Uses only routine water-quality and morphometric variables  
-- Compares **RF, XGBoost, SVM, ANN, and TabNet**  
-- Implements a **Bayesian Neural Network (BNN)**  
-- Decomposes uncertainty into **aleatoric and epistemic components**  
-- Applies **SHAP and permutation importance** for interpretability  
-- Evaluates probabilistic calibration (ECE & Brier score)
+- Uses routine water-quality and morphometric variables.
+- Compares machine-learning and deep-learning models.
+- Includes uncertainty-aware ecological-status prediction.
+- Provides explainable-AI outputs using feature-importance methods.
+- Generates publication-style figures.
+- Includes a reproducibility wrapper and software environment files.
 
 ---
 
 ## 🎯 Objectives
 
-- Classify WFD ecological status from routine variables  
-- Identify dominant environmental drivers  
-- Quantify predictive uncertainty  
-- Provide a scalable complement to biological WFD monitoring  
+The main objectives are to:
 
----
-
-## 📚 Literature Review (Foundational Methods)
-
-This workflow builds upon foundational machine learning and explainability methods:
-
-- Breiman (2001) – Random Forest  
-- Cortes & Vapnik (1995) – Support Vector Machine  
-- Chen & Guestrin (2016) – XGBoost  
-- Arik & Pfister (2021) – TabNet  
-- Lundberg & Lee (2017) – SHAP  
-- Bayesian Neural Networks with Variational Inference  
+1. Predict Finnish lake ecological status using routine monitoring variables.
+2. Compare model performance across machine-learning and deep-learning approaches.
+3. Identify dominant environmental drivers of ecological classification.
+4. Quantify uncertainty in ecological-status prediction.
+5. Provide a reproducible repository for rerunning the analysis.
 
 ---
 
 ## 🔎 Research Questions
 
-**RQ1:**  
-Can routine water-quality variables predict WFD ecological status at national scale?
+**RQ1.** Can routine water-quality and morphometric variables predict WFD ecological status across Finnish lakes?
 
-**RQ2:**  
-Which environmental variables most strongly influence classification?
+**RQ2.** Which physicochemical and morphometric variables contribute most strongly to ecological classification?
 
-**RQ3:**  
-Does Bayesian modeling improve probability calibration?
+**RQ3.** Does Bayesian modelling improve reliability by quantifying predictive uncertainty?
 
-**RQ4:**  
-Is predictive uncertainty primarily aleatoric or epistemic?
+**RQ4.** Is predictive uncertainty mainly aleatoric or epistemic?
 
 ---
 
-# 📊 Data Sources
+## 📊 Data Sources
 
-## Study Area
+### Study Area
 
-- Country: **Finland**  
-- Lakes: **2,487**  
-- Monitoring Period: **2012–2017**  
-- Surface samples: **0–2 m depth**  
-- Aggregation: Lake-wise period means  
+- **Country:** Finland  
+- **Number of lakes:** 2,487  
+- **Monitoring period:** 2012–2017  
+- **Sampling depth:** surface samples, mainly 0–2 m  
+- **Aggregation:** lake-wise period means  
+- **Target:** WFD ecological-status class  
 
-Training and testing use **5-fold cross-validation** within the same monitoring period.
+### Main Predictors
 
----
+The modelling workflow uses routine water-quality and morphometric variables, including:
 
-## Published Data Sources
+- Total phosphorus, TP
+- Total nitrogen, TN
+- Turbidity
+- Conductivity
+- Water temperature
+- pH
+- Water colour
+- Dissolved oxygen
+- Secchi depth
+- Maximum depth
+- Surface area
+- Natural lake type variables
 
-| Name    | Source | Description | Access | URL |
-|---------|--------|------------|--------|-----|
-| Hertta Database | SYKE | Water quality & WFD ecological status | Open access | https://www.syke.fi/en/environmental-data/open-web-services/environmental-data-apis#directory |
+### Published Data Source
 
----
+| Dataset | Source | Description | Access |
+|---|---|---|---|
+| Hertta / SYKE environmental data | Finnish Environment Institute, SYKE | Water quality, lake information, and ecological-status data | Public environmental data services |
 
-## Data Access Notes
-
-Data are publicly available through SYKE open web services.
-
-Users must download raw datasets and place them in the `inputs/` directory before running the workflow.
-
----
-
-# ⚙️ Methods Summary
-
-## 🧠 Model Framework
-
-Supervised Machine Learning and Deep Learning classification framework.
-
----
-
-## 🔄 Preprocessing Steps
-
-- Surface filtering (0–2 m)
-- Lake-wise aggregation (2012–2017 mean)
-- kNN imputation (<6% missing data)
-- MWMOTE oversampling (training folds only)
-- 5-fold cross-validation
-- Hyperparameter optimization using **Optuna**
+Large raw SYKE/VESLA files are **not included** in this repository because of file-size limitations. Instructions for placing raw files locally are provided in [`inputs/README_inputs.md`](inputs/README_inputs.md).
 
 ---
 
-## 🤖 Models
+## ⚙️ Methods Summary
 
-- Random Forest  
-- XGBoost  
-- SVM  
-- ANN (MLP)  
-- TabNet  
-- Bayesian Neural Network (Variational Inference)
+### Preprocessing
+
+The workflow includes:
+
+- Surface-water filtering
+- Lake-wise aggregation for 2012–2017
+- Missing-value handling
+- Class-label harmonization
+- Preparation of modelling-ready feature tables
+- Cross-validation setup
+
+### Models
+
+The project framework includes:
+
+- Random Forest
+- XGBoost
+- Support Vector Machine
+- Artificial Neural Network / MLP
+- TabNet
+- Bayesian Neural Network
+- Ensemble summaries
+
+### Interpretability and Statistical Analysis
+
+The workflow includes:
+
+- SHAP analysis
+- Permutation importance
+- Kruskal-Wallis tests
+- Pairwise Mann-Whitney U tests
+- Feature-importance visualization
+
+### Evaluation Metrics
+
+Model performance is evaluated using:
+
+- Macro-F1 score
+- Accuracy
+- Matthews correlation coefficient, MCC
+- Brier score
+- Expected Calibration Error, ECE
+- Confusion matrices
+- Train/test cross-validation summaries
 
 ---
 
-## 🔍 Interpretability
+## 📁 Repository Structure
 
-- Permutation importance  
-- SHAP analysis  
-- Kruskal–Wallis statistical testing  
-
----
-
-## 📈 Evaluation Metrics
-
-- F1-score (primary metric)  
-- Accuracy  
-- MCC  
-- Brier score  
-- Expected Calibration Error (ECE)
-
----
-
-# 📁 Repository Structure
-
-
-
-# 📁 Repository Structure
-
-
+```text
 lake_ecological_status_wfd/
 ├── README.md
 ├── LICENSE
@@ -186,6 +168,7 @@ lake_ecological_status_wfd/
 ├── Dockerfile
 ├── .gitignore
 ├── run_reproducibility.py
+│
 ├── notebooks/
 │   ├── SE1_data_source_vesla_api.ipynb
 │   ├── SE2_data_processing.ipynb
@@ -195,129 +178,211 @@ lake_ecological_status_wfd/
 │   ├── SE4_figure3_calibration_heatmap.ipynb
 │   ├── SE4_figure4_tabnet_shap_permutation.ipynb
 │   └── SE4_figure5_bnn_uncertainty_decomposition.ipynb
+│
 ├── scripts/
 │   ├── figure1_status_variable_distributions.py
 │   ├── figure2_model_performance_heatmap.py
 │   ├── figure3_calibration_heatmap.py
 │   ├── figure4_tabnet_shap_permutation.py
 │   └── figure5_bnn_uncertainty_decomposition.py
+│
 ├── inputs/
 │   ├── README_inputs.md
 │   └── raw_data/
+│
 ├── data/
 │   ├── imputedmulti.txt
 │   ├── permutation/
 │   ├── shap/
 │   └── bnn/
+│
 ├── images/
 └── outputs/
-
+```
 
 ---
 
-# 🔁 How to Reproduce
+## ✅ Standard Elements
 
+| Standard element | Repository file or folder | Description |
+|---|---|---|
+| SE1: Data access script | `notebooks/SE1_data_source_vesla_api.ipynb` | Retrieves water-quality data from the SYKE/VESLA API. |
+| SE2: Data processing script | `notebooks/SE2_data_processing.ipynb` | Processes raw lake and water-quality data into modelling-ready form. |
+| SE3: Model train and validation script | `notebooks/SE3_xgboost_modelling.ipynb` | Trains and validates the XGBoost ecological-status model. |
+| SE4: Data and results visualization script | `scripts/figure*.py` and SE4 notebooks | Generates data-story and results figures. |
+| SE5: Software environment or image | `requirements.txt` and `Dockerfile` | Defines the software environment required to run the workflow. |
+| SE6: Reproducibility wrapper | `run_reproducibility.py` | Runs the reproducible workflow from the project root. |
 
-## 1. Clone the repository
+---
+
+## 🔁 How to Reproduce
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Mehran1993mn/lake_ecological_status_wfd.git
 cd lake_ecological_status_wfd
+```
+
+### 2. Install Python packages
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Add raw input data
+
+Large raw SYKE/VESLA files are not included in this repository.
+
+Before running the full workflow, place the following files in:
+
+```text
+inputs/raw_data/
+```
+
+Required raw files:
+
+```text
+station_with_ecology_values.csv
+tn323.csv
+tp315.csv
+turbidity7677.csv
+```
+
+These files are documented in:
+
+```text
+inputs/README_inputs.md
+```
+
+### 4. Run the reproducibility wrapper
+
+```bash
+python run_reproducibility.py
+```
+
+### 5. Expected outputs
+
+The workflow generates or checks outputs in:
+
+```text
+images/
+outputs/
+```
+
+Some optional figures require additional input files:
+
+```text
+data/permutation/Permutation.txt
+data/shap/SHAP.txt
+data/bnn/multi.txt
+```
+
+If these optional files are not present, the reproducibility wrapper skips the corresponding optional figures.
+
+---
+
+## 🐳 Docker Usage
+
+A Dockerfile is included as the software-image option.
+
+Build the image with:
+
+```bash
+docker build -t lake-ecological-status-wfd .
+```
+
+Run the container with:
+
+```bash
+docker run --rm lake-ecological-status-wfd
+```
+
+For the full workflow, raw input files still need to be available in the expected folder structure.
+
+---
 
 ## 💻 Computational Requirements
 
-- Python 3.10+  
-- 16 GB RAM recommended  
-- Optional GPU for BNN  
-- OS: Windows / Linux / macOS  
--pip install -r requirements.txt
----
+Recommended requirements:
 
-
-## 🔹 Model Performance
-
-The machine learning framework achieved robust national-scale classification performance:
-
-- Best multi-class macro-F1 ≈ **0.65**
-- Binary classification F1 ≈ **0.84**
-- Best calibration achieved by **Bayesian Neural Network (ECE = 0.016)**
-- Nutrient variables (TP, TN, turbidity) dominate predictive performance
-- Moderate class is the most difficult to classify
-- Predictive uncertainty is primarily **aleatoric**
+- Python 3.10 or newer
+- 16 GB RAM recommended
+- Optional GPU for Bayesian/deep-learning workflows
+- Operating system: Windows, Linux, or macOS
 
 ---
 
-## 🔹 Multi-Class Classification Performance
+## 📈 Main Results Summary
 
-![Model Performance](figures/fig1.png)
+The modelling framework achieved robust national-scale ecological-status classification performance:
 
-*Figure 1. Model performance metrics based on F1-score, accuracy, and Matthews correlation coefficient (MCC). Note that M1, M2, M3, M4, M5, M6, and M7 represent the Bayesian Neural Network, Support Vector Machine, Random Forest, XGBoost, Artificial Neural Network, TabNet, and Ensemble approach, respectively.*
-
----
-
-## 🔹 Feature Importance (SHAP Analysis)
-
-![SHAP Results](figures/fig2.png)
-
-*Figure 2. Feature importance analysis showing dominant environmental drivers of ecological status classification. Panel (a) presents the Permutation Importance results. Panels (b) and (c) display SHAP summary plots derived from the XGBoost and TabNet models, respectively. Abbreviations: TP (Total Phosphorus), TN (Total Nitrogen), MD (Maximum Depth), WC (Water Color), SD (Secchi Depth), WT (Water Temperature), and DO (Dissolved Oxygen). *
-
---- 
-
+- Best multi-class macro-F1 approximately **0.65**
+- Binary classification F1 approximately **0.84**
+- Best calibration achieved by the Bayesian Neural Network, with ECE approximately **0.016**
+- Nutrient variables, especially TP, TN, and turbidity, were dominant predictors
+- The Moderate class was the most difficult ecological-status class to classify
+- Predictive uncertainty was mainly aleatoric
 
 ---
 
-# 📖 Citation
+## 🖼️ Example Figures
 
-This repository should be cited using a persistent DOI (e.g., Zenodo release).
+### Multi-Class Classification Performance
 
-DOI: **DOI_PENDING**
+![Model Performance](images/fig1.png)
 
-After publication, update this section with:
+**Figure 1.** Model performance metrics based on F1-score, accuracy, and Matthews correlation coefficient.
 
+### Feature Importance
+
+![SHAP Results](images/fig2.png)
+
+**Figure 2.** Feature-importance analysis showing dominant environmental drivers of ecological-status classification.
+
+Additional generated figures are stored in the `images/` folder.
 
 ---
 
-# 📜 License
+## 📖 Citation
+
+**Mahdian, M., Abolfathi, S., Kukkonen, J. V. K., & Kolehmainen, M.**  
+*Explainable and Uncertainty-Aware AI for National-Scale Ecological Status Assessment of Lakes under the EU Water Framework Directive.*  
+Manuscript under review at *Water Research*.
+
+---
+
+## 📜 License
 
 This project is licensed under the **MIT License**.
 
-See the `LICENSE` file for details.
+See the [`LICENSE`](LICENSE) file for details.
 
 ---
 
-# 🤝 Contribution Guidelines
+## 🤝 Contribution Guidelines
 
-Contributions that improve the scientific quality, clarity, and reproducibility of this project are welcome.
-
-Because this repository supports research on machine learning–based ecological status classification of lakes (WFD framework), special care must be taken to preserve reproducibility and result integrity.
+Contributions that improve scientific quality, clarity, and reproducibility are welcome.
 
 Please follow these principles:
 
-* Open an issue before making major methodological or result-affecting changes.
-* Keep pull requests focused and clearly describe what changed and why.
-* Do not modify scripts used to reproduce published or reported results without prior discussion.
-* Preserve reproducibility:
-  - Keep random seeds fixed.
-  - Document hyperparameter changes.
-  - Update environment/dependency files if needed.
-* Clearly separate:
-  - Experimental code
-  - Production-ready scripts
-  - Visualization or exploratory notebooks
-* Do not commit raw or restricted datasets (e.g., SYKE data).
-* Respect all data licenses and ethical guidelines.
-
-By contributing, you agree that your work will be released under the project's license.
+- Open an issue before making major methodological or result-affecting changes.
+- Keep pull requests focused and clearly describe what changed.
+- Do not modify scripts used to reproduce reported results without documenting the change.
+- Keep random seeds fixed where possible.
+- Document hyperparameter changes.
+- Update environment/dependency files when packages change.
+- Clearly separate exploratory notebooks from production-ready scripts.
+- Do not commit large raw SYKE/VESLA datasets.
+- Respect all data licenses and ethical guidelines.
 
 ---
 
-# 📝 Notes
+## 📝 Notes
 
 This repository emphasizes:
 
 - Reproducibility
-- Transparent modeling
+- Transparent modelling
 - Uncertainty-aware environmental decision support
 - Clear scientific communication
-
-
