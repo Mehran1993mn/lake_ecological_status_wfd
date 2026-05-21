@@ -178,50 +178,52 @@ Supervised Machine Learning and Deep Learning classification framework.
 
 # 📁 Repository Structure
 
-| Folder/File | Description |
-|-------------|-------------|
-| `README.md` | Project overview and documentation |
-| `LICENSE` | Project license (MIT) |
-| `.gitignore` | Specifies files ignored by Git |
-notebooks/
-   SE1_data_source_vesla_api.ipynb
-    SE2_data_processing.ipynb
-    SE3_xgboost_modelling.ipynb
-    SE4_figure1_status_variable_distributions.ipynb
-    SE4_figure2_model_performance_heatmap.ipynb
-   SE4_figure3_calibration_heatmap.ipynb
-    SE4_figure4_tabnet_shap_permutation.ipynb
-   SE4_figure5_bnn_uncertainty_decomposition.ipynb
 
-scripts/
-   figure1_status_variable_distributions.py
-   figure2_model_performance_heatmap.py
-   figure3_calibration_heatmap.py
-   figure4_tabnet_shap_permutation.py
-    figure5_bnn_uncertainty_decomposition.py
-
-inputs/
-   README_inputs.md
-    raw_data/
-
- data/
-    imputedmulti.txt
-    permutation/
-    shap/
-    bnn/
-
- images/
- outputs/
+lake_ecological_status_wfd/
+├── README.md
+├── LICENSE
+├── requirements.txt
+├── Dockerfile
+├── .gitignore
+├── run_reproducibility.py
+├── notebooks/
+│   ├── SE1_data_source_vesla_api.ipynb
+│   ├── SE2_data_processing.ipynb
+│   ├── SE3_xgboost_modelling.ipynb
+│   ├── SE4_figure1_status_variable_distributions.ipynb
+│   ├── SE4_figure2_model_performance_heatmap.ipynb
+│   ├── SE4_figure3_calibration_heatmap.ipynb
+│   ├── SE4_figure4_tabnet_shap_permutation.ipynb
+│   └── SE4_figure5_bnn_uncertainty_decomposition.ipynb
+├── scripts/
+│   ├── figure1_status_variable_distributions.py
+│   ├── figure2_model_performance_heatmap.py
+│   ├── figure3_calibration_heatmap.py
+│   ├── figure4_tabnet_shap_permutation.py
+│   └── figure5_bnn_uncertainty_decomposition.py
+├── inputs/
+│   ├── README_inputs.md
+│   └── raw_data/
+├── data/
+│   ├── imputedmulti.txt
+│   ├── permutation/
+│   ├── shap/
+│   └── bnn/
+├── images/
+└── outputs/
 
 
 ---
 
 # 🔁 How to Reproduce
--## 1. Clone the repository
+
+
+## 1. Clone the repository
 
 ```bash
 git clone https://github.com/Mehran1993mn/lake_ecological_status_wfd.git
 cd lake_ecological_status_wfd
+
 ## 💻 Computational Requirements
 
 - Python 3.10+  
