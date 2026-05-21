@@ -10,6 +10,7 @@ from pathlib import Path
 
 
 def run_step(command, description):
+    """Run one workflow step and stop if it fails."""
     print(f"\n=== {description} ===")
     subprocess.run(command, shell=True, check=True)
 
@@ -17,9 +18,11 @@ def run_step(command, description):
 def main():
     print("Starting reproducibility workflow...")
 
+    # Create output folders if they do not exist
     Path("images").mkdir(exist_ok=True)
     Path("outputs").mkdir(exist_ok=True)
 
+    # Large raw data files are documented but not stored in GitHub
     raw_data_files = [
         "inputs/raw_data/station_with_ecology_values.csv",
         "inputs/raw_data/tn323.csv",
@@ -31,18 +34,20 @@ def main():
 
     if missing_raw:
         print("\nLarge raw data files are missing.")
-        print("This is expected when the repository is cloned from GitHub.")
+        print("This is expected if the repository was cloned from GitHub.")
         print("Place the following files in inputs/raw_data/ before running the full data-processing workflow:")
         for f in missing_raw:
             print(f" - {f}")
 
-    required_figure_input = Path("data/imputedmulti.txt")
-    if not required_figure_input.exists():
+    # Required input for Figure 1
+    required_file = Path("data/imputedmulti.txt")
+    if not required_file.exists():
         raise FileNotFoundError(
             "Missing required file: data/imputedmulti.txt. "
-            "Add this file before running the visualization workflow."
+            "Please place this file in the data/ folder before running."
         )
 
+    # Main reproducible visualization scripts
     run_step(
         "python scripts/figure1_status_variable_distributions.py",
         "SE4 Figure 1: ecological-status variable distributions",
@@ -58,26 +63,32 @@ def main():
         "SE4 Figure 3: calibration heatmap",
     )
 
+    # Optional scripts requiring additional data files
     optional_steps = [
         {
-            "files": ["data/permutation/Permutation.txt", "data/shap/SHAP.txt"],
-            "command": "python scripts/figure4_tabnet_shap_permutation.py",
             "description": "SE4 Figure 4: TabNet SHAP and permutation importance",
+            "command": "python scripts/figure4_tabnet_shap_permutation.py",
+            "files": [
+                "data/permutation/Permutation.txt",
+                "data/shap/SHAP.txt",
+            ],
         },
         {
-            "files": ["data/bnn/multi.txt"],
-            "command": "python scripts/figure5_bnn_uncertainty_decomposition.py",
             "description": "SE4 Figure 5: BNN uncertainty decomposition",
+            "command": "python scripts/figure5_bnn_uncertainty_decomposition.py",
+            "files": [
+                "data/bnn/multi.txt",
+            ],
         },
     ]
 
     for step in optional_steps:
-        missing = [f for f in step["files"] if not Path(f).exists()]
+        missing_files = [f for f in step["files"] if not Path(f).exists()]
 
-        if missing:
+        if missing_files:
             print(f"\nSkipping {step['description']}.")
             print("Missing optional input file(s):")
-            for f in missing:
+            for f in missing_files:
                 print(f" - {f}")
         else:
             run_step(step["command"], step["description"])
