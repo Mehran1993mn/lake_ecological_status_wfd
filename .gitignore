@@ -13,9 +13,6 @@ outputs/*
 *.pkl
 *.joblib
 
-# Do not ignore small required CSV/TXT unless intentionally added
-# *.csv
-
 # Python
 __pycache__/
 *.pyc
