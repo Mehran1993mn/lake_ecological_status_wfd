@@ -204,6 +204,8 @@ lake_ecological_status_wfd/
 
 ## ✅ Standard Elements
 
+## ✅ Standard Elements
+
 | Standard element | Repository file or folder | Description |
 |---|---|---|
 | SE1: Data access script | `notebooks/SE1_data_source_vesla_api.ipynb` | Retrieves water-quality data from the SYKE/VESLA API. |
