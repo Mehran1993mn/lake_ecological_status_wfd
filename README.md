@@ -1,3 +1,4 @@
+[![Binder](https://hub.diwatools.com/badge_logo.svg)](https://hub.diwatools.com/v2/gh/Mehran1993mn/lake_ecological_status_wfd/HEAD)
 # 🇫🇮 National-Scale Machine Learning Assessment of Lake Ecological Status under the EU WFD
 
 **Author:** Mehran Mahdian  
