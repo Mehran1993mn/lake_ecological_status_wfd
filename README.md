@@ -13,7 +13,7 @@
 ## 🌍 Project Overview
 
 ### 📌 Problem Statement
-
+[![Binder](https://hub.diwatools.com/badge_logo.svg)](https://hub.diwatools.com/v2/gh/Mehran1993mn/lake_ecological_status_wfd/HEAD)
 Lakes provide critical ecosystem services including biodiversity support, drinking water, fisheries, agriculture, recreation, and climate regulation. However, anthropogenic pressures and climate change are accelerating eutrophication, browning, oxygen depletion, harmful algal blooms, and ecological degradation.
 
 Under the **European Union Water Framework Directive (EU WFD)**, lake ecological status is assessed using biological quality elements and classified into ecological-status classes. These assessments are scientifically important but often expensive, labor intensive, temporally sparse, and difficult to update in near real time.
